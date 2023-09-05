@@ -2,6 +2,8 @@ import '@/styles/globals.css'
 
 import type { Metadata } from 'next'
 
+import { SiteFooter } from '@/components/site-footer'
+import { ThemeProvider } from '@/components/theme-provider'
 import { siteConfig } from '@/configs/site'
 import { fontSans } from '@/libs/fonts'
 import { cn } from '@/libs/utils'
@@ -20,8 +22,13 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang='en'>
-      <body className={cn('', fontSans.variable)}>{children}</body>
+    <html lang='en' suppressHydrationWarning>
+      <body className={cn('', fontSans.variable)}>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          {children}
+          <SiteFooter />
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
