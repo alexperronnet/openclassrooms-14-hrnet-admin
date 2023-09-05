@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation'
 import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/configs/site'
-import type { Database } from '@/types/database'
 
 type SiteHeaderProps = {
   session: Session | null
@@ -24,7 +23,7 @@ export function SiteHeader({ session }: SiteHeaderProps) {
   }
 
   return (
-    <header className='border-b'>
+    <header className='sticky top-0 border-b bg-background/70 backdrop-blur'>
       <div className='container flex h-20 items-center justify-between'>
         <Link href='/' className='flex items-center'>
           <Icons.Component1 className='mr-2 h-6 w-6' />

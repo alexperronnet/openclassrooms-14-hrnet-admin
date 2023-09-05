@@ -6,7 +6,6 @@ import { redirect } from 'next/navigation'
 import { Icons } from '@/components/icons'
 import { LoginForm } from '@/components/login-form'
 import { siteConfig } from '@/configs/site'
-import type { Database } from '@/types/database'
 
 export const dynamic = 'force-dynamic'
 

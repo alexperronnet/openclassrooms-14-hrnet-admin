@@ -3,8 +3,6 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import * as React from 'react'
 
-import type { Database } from '@/types/database'
-
 export const dynamic = 'force-dynamic'
 
 type DashboardLayoutProps = {

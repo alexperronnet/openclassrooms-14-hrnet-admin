@@ -1,4 +1,7 @@
-import type { SiteConfig } from '@/types'
+type SiteConfig = {
+  title: string
+  description: string
+}
 
 export const siteConfig: SiteConfig = {
   title: 'HRnet',

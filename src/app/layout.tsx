@@ -11,7 +11,6 @@ import { Toaster } from '@/components/ui/toaster'
 import { siteConfig } from '@/configs/site'
 import { fontSans } from '@/libs/fonts'
 import { cn } from '@/libs/utils'
-import type { Database } from '@/types/database'
 
 export const dynamic = 'force-dynamic'
 

@@ -13,7 +13,6 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { loginFormSchema } from '@/libs/validations/login-form-schema'
-import type { Database } from '@/types/database'
 
 type LoginFormData = z.infer<typeof loginFormSchema>
 

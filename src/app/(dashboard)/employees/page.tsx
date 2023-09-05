@@ -7,7 +7,6 @@ import { DashboardHeading } from '@/components/dashboard-heading'
 import { Icons } from '@/components/icons'
 import { PreferDesktop } from '@/components/prefer-desktop'
 import { buttonVariants } from '@/components/ui/button'
-import type { Database } from '@/types/database'
 
 export const dynamic = 'force-dynamic'
 
