@@ -1,17 +1,25 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
 
 import { DashboardHeading } from '@/components/dashboard-heading'
 import { Icons } from '@/components/icons'
 import { PreferDesktop } from '@/components/prefer-desktop'
 import { buttonVariants } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
+import type { Database } from '@/types/database'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Employees',
 }
 
-export default function EmployeePage() {
+export default async function EmployeePage() {
+  const supabase = createServerComponentClient<Database>({ cookies })
+
+  const { data: employees } = await supabase.from('employees').select()
+
   return (
     <main className='flex flex-col gap-10'>
       <PreferDesktop>
@@ -25,7 +33,9 @@ export default function EmployeePage() {
             </Link>
           }
         />
-        <Skeleton className='h-96 w-full' />
+        <pre className='rounded-md bg-muted p-4 text-xs text-muted-foreground'>
+          <code>{JSON.stringify(employees, null, 2)}</code>
+        </pre>
       </PreferDesktop>
     </main>
   )

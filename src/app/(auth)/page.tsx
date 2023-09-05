@@ -1,14 +1,25 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 import { Icons } from '@/components/icons'
 import { LoginForm } from '@/components/login-form'
 import { siteConfig } from '@/configs/site'
+import type { Database } from '@/types/database'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Login',
 }
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const supabase = createServerComponentClient<Database>({ cookies })
+  const { data } = await supabase.auth.getSession()
+
+  if (data.session) redirect('/employees')
+
   return (
     <main className='mx-auto flex h-full max-w-sm flex-col items-center justify-center gap-6 py-10'>
       <div className='flex flex-col items-center gap-2 text-center'>

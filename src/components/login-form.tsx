@@ -1,18 +1,25 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/navigation'
+import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { loginFormSchema } from '@/libs/validations/login-form-schema'
+import type { Database } from '@/types/database'
 
 type LoginFormData = z.infer<typeof loginFormSchema>
 
 export function LoginForm() {
+  const supabase = createClientComponentClient<Database>()
+  const router = useRouter()
   const { toast } = useToast()
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
@@ -22,11 +29,19 @@ export function LoginForm() {
     },
   })
 
-  function onSubmit(values: LoginFormData) {
-    toast({
-      title: 'Login',
-      description: JSON.stringify(values),
-    })
+  async function onSubmit(values: LoginFormData) {
+    const { error } = await supabase.auth.signInWithPassword(values)
+
+    if (error) {
+      toast({
+        duration: 2000,
+        variant: 'destructive',
+        title: 'Error',
+        description: error.message,
+      })
+    }
+
+    router.refresh()
   }
 
   return (
@@ -56,7 +71,10 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <Button type='submit'>Continue</Button>
+        <Button type='submit' disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting && <Icons.Reload className='mr-2 h-4 w-4 animate-spin' />}
+          <span>Sign in</span>
+        </Button>
       </form>
     </Form>
   )

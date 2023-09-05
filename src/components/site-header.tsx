@@ -1,15 +1,27 @@
 'use client'
 
+import type { Session } from '@supabase/auth-helpers-nextjs'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 import { Icons } from '@/components/icons'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/configs/site'
+import type { Database } from '@/types/database'
 
-export function SiteHeader() {
-  const pathname = usePathname()
-  const session = true // TODO: Replace this with a real session check
+type SiteHeaderProps = {
+  session: Session | null
+}
+
+export function SiteHeader({ session }: SiteHeaderProps) {
+  const supabase = createClientComponentClient<Database>()
+  const router = useRouter()
+
+  async function handleLogout() {
+    await supabase.auth.signOut()
+    router.refresh()
+  }
 
   return (
     <header className='border-b'>
@@ -19,15 +31,10 @@ export function SiteHeader() {
           <span className='font-bold'>{siteConfig.title}</span>
         </Link>
         {session && (
-          <Button variant='destructive' size='sm'>
-            Logout
-          </Button>
-        )}
-        {!session && pathname !== '/' && (
-          <Link href='/' className={buttonVariants({ variant: 'ghost', size: 'sm' })}>
+          <Button variant='ghost' size='sm' onClick={handleLogout}>
             <Icons.ChevronLeft className='mr-2 h-4 w-4' />
-            <span>Back</span>
-          </Link>
+            <span>Logout</span>
+          </Button>
         )}
       </div>
     </header>
