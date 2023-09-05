@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import type { Metadata } from 'next'
 
 import { SiteFooter } from '@/components/site-footer'
+import { SiteHeader } from '@/components/site-header'
 import { ThemeProvider } from '@/components/theme-provider'
 import { siteConfig } from '@/configs/site'
 import { fontSans } from '@/libs/fonts'
@@ -23,9 +24,10 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={cn('', fontSans.variable)}>
+      <body className={cn('flex flex-col', fontSans.variable)}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          {children}
+          <SiteHeader />
+          <div className='container grow py-10'>{children}</div>
           <SiteFooter />
         </ThemeProvider>
       </body>
