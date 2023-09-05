@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/toaster'
 import { siteConfig } from '@/configs/site'
 import { fontSans } from '@/libs/fonts'
 import { cn } from '@/libs/utils'
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <SiteHeader />
           <div className='container grow py-10'>{children}</div>
           <SiteFooter />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
