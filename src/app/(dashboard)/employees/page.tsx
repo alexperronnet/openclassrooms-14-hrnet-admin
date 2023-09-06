@@ -4,6 +4,8 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 
 import { DashboardHeading } from '@/components/dashboard-heading'
+import { EmployeesTable } from '@/components/employees-table'
+import { employeesTableColumns } from '@/components/employees-table/columns'
 import { Icons } from '@/components/icons'
 import { PreferDesktop } from '@/components/prefer-desktop'
 import { buttonVariants } from '@/components/ui/button'
@@ -32,9 +34,7 @@ export default async function EmployeePage() {
             </Link>
           }
         />
-        <pre className='rounded-md bg-muted p-4 text-xs text-muted-foreground'>
-          <code>{JSON.stringify(employees, null, 2)}</code>
-        </pre>
+        <EmployeesTable columns={employeesTableColumns} data={employees ?? []} />
       </PreferDesktop>
     </main>
   )

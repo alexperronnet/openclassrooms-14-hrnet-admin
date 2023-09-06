@@ -23,7 +23,7 @@ export function SiteHeader({ session }: SiteHeaderProps) {
   }
 
   return (
-    <header className='sticky top-0 border-b bg-background/70 backdrop-blur'>
+    <header className='sticky top-0 z-50 border-b bg-background/70 backdrop-blur'>
       <div className='container flex h-20 items-center justify-between'>
         <Link href='/' className='flex items-center'>
           <Icons.Component1 className='mr-2 h-6 w-6' />

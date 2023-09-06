@@ -7,7 +7,6 @@ import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -22,25 +21,17 @@ export function LoginForm() {
   const { toast } = useToast()
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+    defaultValues: { email: '', password: '' },
   })
 
   async function onSubmit(values: LoginFormData) {
     const { error } = await supabase.auth.signInWithPassword(values)
 
     if (error) {
-      toast({
-        duration: 2000,
-        variant: 'destructive',
-        title: 'Error',
-        description: error.message,
-      })
+      toast({ variant: 'destructive', title: 'Error', description: error.message })
+    } else {
+      router.refresh()
     }
-
-    router.refresh()
   }
 
   return (
@@ -71,8 +62,7 @@ export function LoginForm() {
           )}
         />
         <Button type='submit' disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting && <Icons.Reload className='mr-2 h-4 w-4 animate-spin' />}
-          <span>Sign in</span>
+          {form.formState.isSubmitting ? 'Signing in...' : 'Sign in'}
         </Button>
       </form>
     </Form>

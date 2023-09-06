@@ -10,6 +10,7 @@ export interface Database {
           date_of_birth: string
           department: string
           first_name: string
+          gender: string
           id: string
           last_name: string
           start_date: string
@@ -23,6 +24,7 @@ export interface Database {
           date_of_birth: string
           department: string
           first_name: string
+          gender: string
           id?: string
           last_name: string
           start_date: string
@@ -36,6 +38,7 @@ export interface Database {
           date_of_birth?: string
           department?: string
           first_name?: string
+          gender?: string
           id?: string
           last_name?: string
           start_date?: string

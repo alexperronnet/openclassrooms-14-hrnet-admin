@@ -1,4 +1,4 @@
-import { Database as DB } from '@/types/supabase'
+import type { Database as DB } from '@/types/supabase'
 
 type Tweet = DB['public']['Tables']['tweets']['Row']
 
