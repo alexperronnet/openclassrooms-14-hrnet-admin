@@ -11,20 +11,26 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
-import { loginFormSchema } from '@/libs/validations/login-form-schema'
 
-type LoginFormData = z.infer<typeof loginFormSchema>
+const schema = z.object({
+  email: z.string().nonempty().email(),
+  password: z.string().nonempty(),
+})
 
 export function LoginForm() {
   const supabase = createClientComponentClient<Database>()
+
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  })
   const router = useRouter()
   const { toast } = useToast()
-  const form = useForm<LoginFormData>({
-    resolver: zodResolver(loginFormSchema),
-    defaultValues: { email: '', password: '' },
-  })
 
-  async function onSubmit(values: LoginFormData) {
+  async function onSubmit(values: z.infer<typeof schema>) {
     const { error } = await supabase.auth.signInWithPassword(values)
 
     if (error) {

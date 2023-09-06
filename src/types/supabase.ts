@@ -16,7 +16,7 @@ export interface Database {
           start_date: Date
           state: string | null
           street_address: string | null
-          zip_code: number | null
+          zip_code: string | null
         }
         Insert: {
           city?: string | null
@@ -30,7 +30,7 @@ export interface Database {
           start_date: Date
           state?: string | null
           street_address?: string | null
-          zip_code?: number | null
+          zip_code?: string | null
         }
         Update: {
           city?: string | null
@@ -44,7 +44,7 @@ export interface Database {
           start_date?: Date
           state?: string | null
           street_address?: string | null
-          zip_code?: number | null
+          zip_code?: string | null
         }
         Relationships: []
       }

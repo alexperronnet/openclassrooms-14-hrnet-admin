@@ -1,7 +1,9 @@
 import {
+  CalendarIcon,
   CaretDownIcon,
   CaretSortIcon,
   CaretUpIcon,
+  CheckIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   Component1Icon,
@@ -16,12 +18,15 @@ import {
   ReloadIcon,
   SunIcon,
   TrashIcon,
+  ValueNoneIcon,
 } from '@radix-ui/react-icons'
 
 export const Icons = {
+  Calendar: CalendarIcon,
   CaretDown: CaretDownIcon,
   CaretSort: CaretSortIcon,
   CaretUp: CaretUpIcon,
+  Check: CheckIcon,
   ChevronLeft: ChevronLeftIcon,
   ChevronRight: ChevronRightIcon,
   Component1: Component1Icon,
@@ -36,4 +41,5 @@ export const Icons = {
   Reload: ReloadIcon,
   Sun: SunIcon,
   Trash: TrashIcon,
+  ValueNone: ValueNoneIcon,
 }

@@ -2,7 +2,6 @@
 
 import {
   ColumnDef,
-  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -17,6 +16,7 @@ import * as React from 'react'
 import { EmployeesTablePagination } from '@/components/employees-table/pagination'
 import { EmployeesTableSearch } from '@/components/employees-table/search'
 import { EmployeesTableViewOptions } from '@/components/employees-table/view-options'
+import { Icons } from '@/components/icons'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 interface EmployeesTableProps<TData, TValue> {
@@ -72,14 +72,20 @@ export function EmployeesTable<TData, TValue>({ columns, data }: EmployeesTableP
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell key={cell.id}>
+                      {cell.getValue() === null ? (
+                        <Icons.ValueNone className='h-4' />
+                      ) : (
+                        flexRender(cell.column.columnDef.cell, cell.getContext())
+                      )}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-24 text-center'>
-                  No results.
+                  No employees found.
                 </TableCell>
               </TableRow>
             )}

@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 
+import { CreateEmployeeForm } from '@/components/create-employee-form'
 import { DashboardHeading } from '@/components/dashboard-heading'
 import { Icons } from '@/components/icons'
 import { buttonVariants } from '@/components/ui/button'
@@ -22,6 +23,7 @@ export default function CreateEmployeePage() {
           </Link>
         }
       />
+      <CreateEmployeeForm />
     </main>
   )
 }
