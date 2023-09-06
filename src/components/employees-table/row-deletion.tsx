@@ -1,8 +1,8 @@
 'use client'
 
-import { TrashIcon } from '@radix-ui/react-icons'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Row } from '@tanstack/react-table'
+import { Trash2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
 
@@ -53,7 +53,7 @@ export function EmployeesTableRowDeletion({ row }: EmployeesTableRowDeletionProp
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
         <Button variant='ghost' className='flex h-8 w-8 p-0'>
-          <TrashIcon className='h-4 w-4' />
+          <Trash2Icon className='h-4 w-4' />
           <span className='sr-only'>Delete</span>
         </Button>
       </AlertDialogTrigger>

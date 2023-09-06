@@ -1,6 +1,5 @@
 'use client'
 
-import { ValueNoneIcon } from '@radix-ui/react-icons'
 import {
   ColumnDef,
   flexRender,
@@ -12,6 +11,7 @@ import {
   useReactTable,
   VisibilityState,
 } from '@tanstack/react-table'
+import { CircleOffIcon } from 'lucide-react'
 import * as React from 'react'
 
 import { EmployeesTablePagination } from '@/components/employees-table/pagination'
@@ -74,7 +74,7 @@ export function EmployeesTable<TData, TValue>({ columns, data }: EmployeesTableP
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {cell.getValue() === null ? (
-                        <ValueNoneIcon className='h-4' />
+                        <CircleOffIcon className='h-4' />
                       ) : (
                         flexRender(cell.column.columnDef.cell, cell.getContext())
                       )}

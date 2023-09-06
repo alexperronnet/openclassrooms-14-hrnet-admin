@@ -1,4 +1,4 @@
-import { PersonIcon } from '@radix-ui/react-icons'
+import { UsersIcon } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function CreateEmployeePage() {
   return (
-    <main className='flex flex-col gap-10'>
+    <main className='flex flex-col gap-14'>
       <DashboardHeading
         title='Create employee'
         description='Fill out the form below to create a new employee.'
         action={
           <Link href='/employees' className={buttonVariants()}>
-            <PersonIcon className='mr-2 h-4 w-4' />
+            <UsersIcon className='mr-2 h-4 w-4' />
             <span>See all employees</span>
           </Link>
         }

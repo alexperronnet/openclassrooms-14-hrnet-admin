@@ -1,9 +1,9 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CalendarIcon } from '@radix-ui/react-icons'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { format } from 'date-fns'
+import { CalendarIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
@@ -14,7 +14,7 @@ import { Calendar } from '@/components/ui/calendar'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useToast } from '@/components/ui/use-toast'
 import { US_STATES } from '@/data/us-states'
@@ -66,7 +66,7 @@ export function CreateEmployeeForm() {
               <FormItem>
                 <FormLabel>First Name</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input placeholder='John' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,7 +79,7 @@ export function CreateEmployeeForm() {
               <FormItem>
                 <FormLabel>Last Name</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input placeholder='Doe' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -94,7 +94,7 @@ export function CreateEmployeeForm() {
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className={cn(!field.value && 'text-muted-foreground')}>
-                      <SelectValue />
+                      <SelectValue placeholder='Select a gender' />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -119,7 +119,7 @@ export function CreateEmployeeForm() {
                         variant={'outline'}
                         className={cn('w-full pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}
                       >
-                        {field.value && format(field.value, 'PPP')}
+                        {field.value ? format(field.value, 'PPP') : 'Pick a date'}
                         <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                       </Button>
                     </FormControl>
@@ -150,7 +150,7 @@ export function CreateEmployeeForm() {
               <FormItem>
                 <FormLabel>Street Adress</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input placeholder='1234 Main St' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -163,7 +163,7 @@ export function CreateEmployeeForm() {
               <FormItem>
                 <FormLabel>City</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input placeholder='Anytown' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -178,11 +178,11 @@ export function CreateEmployeeForm() {
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className={cn(!field.value && 'text-muted-foreground')}>
-                      <SelectValue />
+                      <SelectValue placeholder='Select a state' />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent position='popper'>
-                    <ScrollArea className='h-56' type='always'>
+                    <ScrollArea className='h-56'>
                       {US_STATES.map((state) => (
                         <SelectItem key={state.code} value={state.code}>
                           {state.name}
@@ -202,7 +202,7 @@ export function CreateEmployeeForm() {
               <FormItem>
                 <FormLabel>Zip Code</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input placeholder='12345' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -219,7 +219,7 @@ export function CreateEmployeeForm() {
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className={cn(!field.value && 'text-muted-foreground')}>
-                      <SelectValue />
+                      <SelectValue placeholder='Select a department' />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -247,7 +247,7 @@ export function CreateEmployeeForm() {
                         variant={'outline'}
                         className={cn('w-full pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}
                       >
-                        {field.value && format(field.value, 'PPP')}
+                        {field.value ? format(field.value, 'PPP') : 'Pick a date'}
                         <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                       </Button>
                     </FormControl>

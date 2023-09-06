@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       <body className={cn('flex flex-col', fontSans.variable)}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           <SiteHeader session={data.session} />
-          <div className='container grow py-10'>{children}</div>
+          <div className='container grow py-14'>{children}</div>
           <SiteFooter />
           <Toaster />
         </ThemeProvider>

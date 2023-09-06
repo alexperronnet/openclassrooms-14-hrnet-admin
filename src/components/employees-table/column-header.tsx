@@ -1,7 +1,7 @@
 'use client'
 
-import { CaretDownIcon, CaretSortIcon, CaretUpIcon, EyeNoneIcon } from '@radix-ui/react-icons'
 import type { Column } from '@tanstack/react-table'
+import { ChevronDownIcon, ChevronsUpDownIcon, ChevronUpIcon, EyeOffIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -34,27 +34,27 @@ export function EmployeesTableColumnHeader<TData, TValue>({
           <Button variant='ghost' size='sm' className='-ml-3 h-8 data-[state=open]:bg-accent'>
             <span>{title}</span>
             {column.getIsSorted() === 'desc' ? (
-              <CaretDownIcon className='ml-2 h-4 w-4' />
+              <ChevronDownIcon className='ml-2 h-4 w-4' />
             ) : column.getIsSorted() === 'asc' ? (
-              <CaretUpIcon className='ml-2 h-4 w-4' />
+              <ChevronUpIcon className='ml-2 h-4 w-4' />
             ) : (
-              <CaretSortIcon className='ml-2 h-4 w-4' />
+              <ChevronsUpDownIcon className='ml-2 h-4 w-4' />
             )}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <CaretUpIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
-            Asc
+            <ChevronUpIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
+            <span>Asc</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <CaretDownIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
-            Desc
+            <ChevronDownIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
+            <span>Desc</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-            <EyeNoneIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
-            Hide
+            <EyeOffIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
+            <span>Hide</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

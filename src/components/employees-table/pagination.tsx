@@ -1,7 +1,7 @@
 'use client'
 
-import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from '@radix-ui/react-icons'
 import type { Table } from '@tanstack/react-table'
+import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -35,7 +35,7 @@ export function EmployeesTablePagination<TData>({ table }: EmployeesTablePaginat
       </div>
       <div className='flex items-center space-x-6 lg:space-x-8'>
         <p className='sr-only text-sm font-medium text-muted-foreground sm:not-sr-only'>
-          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+          Page {table.getPageCount() !== 0 ? table.getState().pagination.pageIndex + 1 : '0'} of {table.getPageCount()}
         </p>
         <div className='flex items-center space-x-2'>
           <Button
@@ -45,7 +45,7 @@ export function EmployeesTablePagination<TData>({ table }: EmployeesTablePaginat
             disabled={!table.getCanPreviousPage()}
           >
             <span className='sr-only'>Go to first page</span>
-            <DoubleArrowLeftIcon className='h-4 w-4' />
+            <ChevronsLeftIcon className='h-4 w-4' />
           </Button>
           <Button
             variant='outline'
@@ -72,7 +72,7 @@ export function EmployeesTablePagination<TData>({ table }: EmployeesTablePaginat
             disabled={!table.getCanNextPage()}
           >
             <span className='sr-only'>Go to last page</span>
-            <DoubleArrowRightIcon className='h-4 w-4' />
+            <ChevronsRightIcon className='h-4 w-4' />
           </Button>
         </div>
       </div>

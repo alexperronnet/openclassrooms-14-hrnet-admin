@@ -1,4 +1,4 @@
-import { LaptopIcon } from '@radix-ui/react-icons'
+import { LaptopIcon } from 'lucide-react'
 import * as React from 'react'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'

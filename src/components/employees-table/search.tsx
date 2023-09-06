@@ -1,7 +1,7 @@
 'use client'
 
-import { Cross2Icon } from '@radix-ui/react-icons'
 import { Table } from '@tanstack/react-table'
+import { XIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -24,7 +24,7 @@ export function EmployeesTableSearch<TData>({ table }: EmployeesTableSearchProps
       {isFiltered && (
         <Button variant='ghost' size='sm' onClick={() => table.setGlobalFilter('')}>
           <span>Reset</span>
-          <Cross2Icon className='ml-2 h-4 w-4' />
+          <XIcon className='ml-2 h-4 w-4' />
         </Button>
       )}
     </div>

@@ -1,5 +1,5 @@
-import { PlusIcon } from '@radix-ui/react-icons'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { UserPlusIcon } from 'lucide-react'
 import { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
@@ -22,14 +22,14 @@ export default async function EmployeePage() {
   const { data: employees } = await supabase.from('employees').select()
 
   return (
-    <main className='flex flex-col gap-10'>
+    <main className='flex flex-col gap-14'>
       <PreferDesktop>
         <DashboardHeading
           title='Employees'
           description='See and manage all employees.'
           action={
             <Link href='/create-employee' className={buttonVariants()}>
-              <PlusIcon className='mr-2 h-4 w-4' />
+              <UserPlusIcon className='mr-2 h-4 w-4' />
               <span>Create employee</span>
             </Link>
           }
