@@ -41,6 +41,7 @@ export const employeesTableColumns: ColumnDef<Employee>[] = [
   {
     accessorKey: 'zip_code',
     header: ({ column }) => <EmployeesTableColumnHeader column={column} title='Zip Code' />,
+    cell: ({ row }) => row.original.zip_code?.toString().padStart(5, '0'),
   },
   {
     accessorKey: 'department',

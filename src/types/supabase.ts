@@ -7,13 +7,13 @@ export interface Database {
         Row: {
           city: string | null
           created_at: string
-          date_of_birth: string
+          date_of_birth: Date
           department: string
           first_name: string
           gender: string
           id: string
           last_name: string
-          start_date: string
+          start_date: Date
           state: string | null
           street_address: string | null
           zip_code: number | null
@@ -21,13 +21,13 @@ export interface Database {
         Insert: {
           city?: string | null
           created_at?: string
-          date_of_birth: string
+          date_of_birth: Date
           department: string
           first_name: string
           gender: string
           id?: string
           last_name: string
-          start_date: string
+          start_date: Date
           state?: string | null
           street_address?: string | null
           zip_code?: number | null
@@ -35,13 +35,13 @@ export interface Database {
         Update: {
           city?: string | null
           created_at?: string
-          date_of_birth?: string
+          date_of_birth?: Date
           department?: string
           first_name?: string
           gender?: string
           id?: string
           last_name?: string
-          start_date?: string
+          start_date?: Date
           state?: string | null
           street_address?: string | null
           zip_code?: number | null

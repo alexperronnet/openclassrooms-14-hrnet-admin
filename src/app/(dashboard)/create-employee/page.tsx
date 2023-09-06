@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { DashboardHeading } from '@/components/dashboard-heading'
 import { Icons } from '@/components/icons'
 import { buttonVariants } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
 
 export const metadata: Metadata = {
   title: 'Create Employee',
@@ -23,7 +22,6 @@ export default function CreateEmployeePage() {
           </Link>
         }
       />
-      <Skeleton className='h-96 w-full' />
     </main>
   )
 }
