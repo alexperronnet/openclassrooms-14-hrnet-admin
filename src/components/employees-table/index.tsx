@@ -1,5 +1,6 @@
 'use client'
 
+import { ValueNoneIcon } from '@radix-ui/react-icons'
 import {
   ColumnDef,
   flexRender,
@@ -16,7 +17,6 @@ import * as React from 'react'
 import { EmployeesTablePagination } from '@/components/employees-table/pagination'
 import { EmployeesTableSearch } from '@/components/employees-table/search'
 import { EmployeesTableViewOptions } from '@/components/employees-table/view-options'
-import { Icons } from '@/components/icons'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 interface EmployeesTableProps<TData, TValue> {
@@ -74,7 +74,7 @@ export function EmployeesTable<TData, TValue>({ columns, data }: EmployeesTableP
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {cell.getValue() === null ? (
-                        <Icons.ValueNone className='h-4' />
+                        <ValueNoneIcon className='h-4' />
                       ) : (
                         flexRender(cell.column.columnDef.cell, cell.getContext())
                       )}

@@ -1,9 +1,9 @@
+import { PersonIcon } from '@radix-ui/react-icons'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
 import { CreateEmployeeForm } from '@/components/create-employee-form'
 import { DashboardHeading } from '@/components/dashboard-heading'
-import { Icons } from '@/components/icons'
 import { buttonVariants } from '@/components/ui/button'
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function CreateEmployeePage() {
         description='Fill out the form below to create a new employee.'
         action={
           <Link href='/employees' className={buttonVariants()}>
-            <Icons.Person className='mr-2 h-4 w-4' />
+            <PersonIcon className='mr-2 h-4 w-4' />
             <span>See all employees</span>
           </Link>
         }

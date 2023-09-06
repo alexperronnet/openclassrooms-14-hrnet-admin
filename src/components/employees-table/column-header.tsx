@@ -1,8 +1,8 @@
 'use client'
 
+import { CaretDownIcon, CaretSortIcon, CaretUpIcon, EyeNoneIcon } from '@radix-ui/react-icons'
 import type { Column } from '@tanstack/react-table'
 
-import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -34,26 +34,26 @@ export function EmployeesTableColumnHeader<TData, TValue>({
           <Button variant='ghost' size='sm' className='-ml-3 h-8 data-[state=open]:bg-accent'>
             <span>{title}</span>
             {column.getIsSorted() === 'desc' ? (
-              <Icons.CaretDown className='ml-2 h-4 w-4' />
+              <CaretDownIcon className='ml-2 h-4 w-4' />
             ) : column.getIsSorted() === 'asc' ? (
-              <Icons.CaretUp className='ml-2 h-4 w-4' />
+              <CaretUpIcon className='ml-2 h-4 w-4' />
             ) : (
-              <Icons.CaretSort className='ml-2 h-4 w-4' />
+              <CaretSortIcon className='ml-2 h-4 w-4' />
             )}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <Icons.CaretUp className='mr-2 h-4 w-4 text-muted-foreground/70' />
+            <CaretUpIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
             Asc
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <Icons.CaretDown className='mr-2 h-4 w-4 text-muted-foreground/70' />
+            <CaretDownIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
             Desc
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-            <Icons.EyeNone className='mr-2 h-4 w-4 text-muted-foreground/70' />
+            <EyeNoneIcon className='mr-2 h-4 w-4 text-muted-foreground/70' />
             Hide
           </DropdownMenuItem>
         </DropdownMenuContent>

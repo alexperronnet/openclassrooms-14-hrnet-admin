@@ -1,8 +1,8 @@
 'use client'
 
+import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from '@radix-ui/react-icons'
 import type { Table } from '@tanstack/react-table'
 
-import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
@@ -45,7 +45,7 @@ export function EmployeesTablePagination<TData>({ table }: EmployeesTablePaginat
             disabled={!table.getCanPreviousPage()}
           >
             <span className='sr-only'>Go to first page</span>
-            <Icons.DoubleArrowLeft className='h-4 w-4' />
+            <DoubleArrowLeftIcon className='h-4 w-4' />
           </Button>
           <Button
             variant='outline'
@@ -54,7 +54,7 @@ export function EmployeesTablePagination<TData>({ table }: EmployeesTablePaginat
             disabled={!table.getCanPreviousPage()}
           >
             <span className='sr-only'>Go to previous page</span>
-            <Icons.ChevronLeft className='h-4 w-4' />
+            <ChevronLeftIcon className='h-4 w-4' />
           </Button>
           <Button
             variant='outline'
@@ -63,7 +63,7 @@ export function EmployeesTablePagination<TData>({ table }: EmployeesTablePaginat
             disabled={!table.getCanNextPage()}
           >
             <span className='sr-only'>Go to next page</span>
-            <Icons.ChevronRight className='h-4 w-4' />
+            <ChevronRightIcon className='h-4 w-4' />
           </Button>
           <Button
             variant='outline'
@@ -72,7 +72,7 @@ export function EmployeesTablePagination<TData>({ table }: EmployeesTablePaginat
             disabled={!table.getCanNextPage()}
           >
             <span className='sr-only'>Go to last page</span>
-            <Icons.DoubleArrowRight className='h-4 w-4' />
+            <DoubleArrowRightIcon className='h-4 w-4' />
           </Button>
         </div>
       </div>

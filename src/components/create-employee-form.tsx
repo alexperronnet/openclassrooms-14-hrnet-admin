@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { CalendarIcon } from '@radix-ui/react-icons'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { format } from 'date-fns'
 import { useRouter } from 'next/navigation'
@@ -8,7 +9,6 @@ import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -120,7 +120,7 @@ export function CreateEmployeeForm() {
                         className={cn('w-full pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}
                       >
                         {field.value && format(field.value, 'PPP')}
-                        <Icons.Calendar className='ml-auto h-4 w-4 opacity-50' />
+                        <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
@@ -248,7 +248,7 @@ export function CreateEmployeeForm() {
                         className={cn('w-full pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}
                       >
                         {field.value && format(field.value, 'PPP')}
-                        <Icons.Calendar className='ml-auto h-4 w-4 opacity-50' />
+                        <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                       </Button>
                     </FormControl>
                   </PopoverTrigger>

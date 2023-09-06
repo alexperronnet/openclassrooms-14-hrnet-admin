@@ -1,11 +1,11 @@
 'use client'
 
+import { ChevronLeftIcon, Component1Icon } from '@radix-ui/react-icons'
 import type { Session } from '@supabase/auth-helpers-nextjs'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/configs/site'
 
@@ -26,12 +26,12 @@ export function SiteHeader({ session }: SiteHeaderProps) {
     <header className='sticky top-0 z-50 border-b bg-background/70 backdrop-blur'>
       <div className='container flex h-20 items-center justify-between'>
         <Link href='/' className='flex items-center'>
-          <Icons.Component1 className='mr-2 h-6 w-6' />
+          <Component1Icon className='mr-2 h-6 w-6' />
           <span className='font-bold'>{siteConfig.title}</span>
         </Link>
         {session && (
           <Button variant='ghost' size='sm' onClick={handleLogout}>
-            <Icons.ChevronLeft className='mr-2 h-4 w-4' />
+            <ChevronLeftIcon className='mr-2 h-4 w-4' />
             <span>Logout</span>
           </Button>
         )}

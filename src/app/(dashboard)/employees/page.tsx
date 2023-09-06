@@ -1,3 +1,4 @@
+import { PlusIcon } from '@radix-ui/react-icons'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Metadata } from 'next'
 import { cookies } from 'next/headers'
@@ -6,7 +7,6 @@ import Link from 'next/link'
 import { DashboardHeading } from '@/components/dashboard-heading'
 import { EmployeesTable } from '@/components/employees-table'
 import { employeesTableColumns } from '@/components/employees-table/columns'
-import { Icons } from '@/components/icons'
 import { PreferDesktop } from '@/components/prefer-desktop'
 import { buttonVariants } from '@/components/ui/button'
 
@@ -29,7 +29,7 @@ export default async function EmployeePage() {
           description='See and manage all employees.'
           action={
             <Link href='/create-employee' className={buttonVariants()}>
-              <Icons.Plus className='mr-2 h-4 w-4' />
+              <PlusIcon className='mr-2 h-4 w-4' />
               <span>Create employee</span>
             </Link>
           }

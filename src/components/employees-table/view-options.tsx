@@ -1,8 +1,8 @@
 'use client'
 
+import { MixerHorizontalIcon } from '@radix-ui/react-icons'
 import type { Table } from '@tanstack/react-table'
 
-import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -22,7 +22,7 @@ export function EmployeesTableViewOptions<TData>({ table }: EmployeesTableViewOp
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant='outline' size='sm' className='hidden h-8 md:flex'>
-          <Icons.MixerHorizontal className='mr-2 h-4 w-4' />
+          <MixerHorizontalIcon className='mr-2 h-4 w-4' />
           View
         </Button>
       </DropdownMenuTrigger>
