@@ -20,6 +20,30 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.title}`,
   },
   description: siteConfig.description,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: siteConfig.url,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    siteName: siteConfig.title,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/og.jpg`],
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
 type RootLayoutProps = {
@@ -32,6 +56,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang='en' suppressHydrationWarning>
+      <head />
       <body className={cn('flex flex-col', fontSans.variable)}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           <SiteHeader session={data.session} />
