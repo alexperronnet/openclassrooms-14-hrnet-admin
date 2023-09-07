@@ -1,34 +1,112 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HRnet
 
-## Getting Started
+> [!WARNING]\
+> This repository contains a project from my "JavaScript React Developer" training program with [OpenClassrooms](https://openclassrooms.com/fr/). After the program's conclusion on September 20th, 2023, the project will no longer be updated or maintained.
 
-First, run the development server:
+![Preview](https://github.com/alexperronnet/oc-14-hrnet-admin/assets/59840413/286213bb-82b3-4d23-a823-7f09e298bc29)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Table of Contents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [HRnet](#hrnet)
+  - [Table of Contents](#table-of-contents)
+  - [Project Overview](#project-overview)
+    - [Project Goals](#project-goals)
+    - [Improvements](#improvements)
+    - [Useful Links](#useful-links)
+  - [Prerequisites](#prerequisites)
+  - [Technology Stack](#technology-stack)
+    - [Primary Stack](#primary-stack)
+    - [Code Quality](#code-quality)
+  - [Local Setup](#local-setup)
+    - [Frontend](#frontend)
+  - [License](#license)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+For this project, I was challenged to transform an HR management application with legacy code into a React application. The original application was developed using jQuery. You can find the original repository [here](https://github.com/OpenClassrooms-Student-Center/P12_Front-end).
 
-## Learn More
+### Project Goals
 
-To learn more about Next.js, take a look at the following resources:
+- [x] Convert the application to React.
+- [x] Migrate one of the used plugins to React (I created a [React Dialog](https://github.com/alexperronnet/oc-14-react-dialog)).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+As this is the concluding project of my training program, I aimed to surpass the basic project requirements. I developed this project as a full-stack application using [Next.js](https://nextjs.org/) and [Supabase](https://supabase.io/). My ambition was to craft a maintainable, accessible, and scalable application. To achieve this, I employed [TypeScript](https://www.typescriptlang.org/) for type safety.
 
-## Deploy on Vercel
+### Useful Links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Live Demo](https://oc-14-hrnet-admin.vercel.app/)
+- [Original Repository](https://github.com/OpenClassrooms-Student-Center/P12_Front-end)
+- [Custom React Dialog](https://github.com/alexperronnet/oc-14-react-dialog)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Prerequisites
+
+- [Node.js](https://nodejs.org/en/)
+
+> If using a node version manager like [FNM](https://github.com/Schniz/fnm) or [NVM](https://github.com/nvm-sh/nvm), run `fnm use` or `nvm use` to switch to the recommended node version.
+
+## Technology Stack
+
+Here's an overview of the main technologies I've used in this project. For detailed dependencies, check the [package.json](./package.json) file.
+
+### Primary Stack
+
+| Technology                                           | Purpose                                       |
+| ---------------------------------------------------- | --------------------------------------------- |
+| [Next.js](https://nextjs.org/)                       | Server-side rendering with the new app router |
+| [Supabase](https://supabase.io/)                     | Database and authentication                   |
+| [TypeScript](https://www.typescriptlang.org/)        | Type safety                                   |
+| [Tailwind CSS](https://tailwindcss.com/)             | Styling                                       |
+| [Radix](https://www.radix-ui.com/primitives)         | Building accessible components                |
+| [TanStack Table](https://tanstack.com/table/v8)      | Headless table component for data display     |
+| [React Day Picker](https://react-day-picker.js.org/) | Date picker                                   |
+| [date-fns](https://date-fns.org/)                    | Date formatting                               |
+| [React Hook Form](https://react-hook-form.com/)      | Form handling                                 |
+| [zod](https://zod.dev/)                              | Form validation                               |
+
+### Code Quality
+
+| Tool                                                 | Purpose                           |
+| ---------------------------------------------------- | --------------------------------- |
+| [ESLint](https://eslint.org/)                        | Linting JavaScript and TypeScript |
+| [Prettier](https://prettier.io/)                     | Code formatting                   |
+| [Husky](https://typicode.github.io/husky/#/)         | Running scripts on Git hooks      |
+| [lint-staged](https://github.com/okonet/lint-staged) | Running scripts on staged files   |
+| [Commitlint](https://commitlint.js.org/#/)           | Commit message linting            |
+
+## Local Setup
+
+### Frontend
+
+> This project uses [PNPM](https://pnpm.io/) as its package manager. However, [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) can be used as alternatives.
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/alexperronnet/oc-14-hrnet-admin.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd oc-14-hrnet-admin
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+    pnpm run dev
+   ```
+
+5. Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
+
+## License
+
+This is an OpenClassrooms project. While the code is freely reusable, the assets are not mine and thus not available for reuse. If you're an OpenClassrooms student, you may use my work as inspiration, but copying and pasting parts or whole sections is discouraged.
