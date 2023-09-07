@@ -64,7 +64,13 @@ export function CreateEmployeeForm() {
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: {},
+    defaultValues: {
+      first_name: '',
+      last_name: '',
+      street_address: '',
+      city: '',
+      zip_code: '',
+    },
   })
   const [showOptionalFields, setShowOptionalFields] = React.useState(false)
   const router = useRouter()
