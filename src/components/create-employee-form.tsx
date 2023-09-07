@@ -13,9 +13,11 @@ import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/components/ui/use-toast'
 import { US_STATES } from '@/data/us-states'
 import { cn } from '@/libs/utils'
@@ -64,6 +66,7 @@ export function CreateEmployeeForm() {
     resolver: zodResolver(schema),
     defaultValues: {},
   })
+  const [showOptionalFields, setShowOptionalFields] = React.useState(false)
   const router = useRouter()
   const { toast } = useToast()
 
@@ -165,75 +168,6 @@ export function CreateEmployeeForm() {
               </FormItem>
             )}
           />
-        </div>
-        <div className='grid gap-6 sm:grid-cols-4'>
-          <FormField
-            control={form.control}
-            name='street_address'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Street Adress</FormLabel>
-                <FormControl>
-                  <Input placeholder='1234 Main St' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='city'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>City</FormLabel>
-                <FormControl>
-                  <Input placeholder='Anytown' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='state'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>State</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger className={cn(!field.value && 'text-muted-foreground')}>
-                      <SelectValue placeholder='Select a state' />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent position='popper'>
-                    <ScrollArea className='h-56'>
-                      {US_STATES.map((state) => (
-                        <SelectItem key={state.code} value={state.code}>
-                          {state.name}
-                        </SelectItem>
-                      ))}
-                    </ScrollArea>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='zip_code'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Zip Code</FormLabel>
-                <FormControl>
-                  <Input placeholder='12345' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className='grid gap-6 sm:grid-cols-2'>
           <FormField
             control={form.control}
             name='department'
@@ -285,6 +219,79 @@ export function CreateEmployeeForm() {
             )}
           />
         </div>
+        <div className='flex items-center space-x-2'>
+          <Switch checked={showOptionalFields} onCheckedChange={setShowOptionalFields} />
+          <Label>Show optional fields</Label>
+        </div>
+        {showOptionalFields && (
+          <div className='grid gap-6 sm:grid-cols-4 lg:grid-cols-5'>
+            <FormField
+              control={form.control}
+              name='street_address'
+              render={({ field }) => (
+                <FormItem className='sm:col-span-2'>
+                  <FormLabel>Street Adress</FormLabel>
+                  <FormControl>
+                    <Input placeholder='1234 Main St' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='city'
+              render={({ field }) => (
+                <FormItem className='sm:col-span-2 lg:col-span-1'>
+                  <FormLabel>City</FormLabel>
+                  <FormControl>
+                    <Input placeholder='Anytown' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='state'
+              render={({ field }) => (
+                <FormItem className='sm:col-span-2 lg:col-span-1'>
+                  <FormLabel>State</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className={cn(!field.value && 'text-muted-foreground')}>
+                        <SelectValue placeholder='Select a state' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent position='popper'>
+                      <ScrollArea className='h-56'>
+                        {US_STATES.map((state) => (
+                          <SelectItem key={state.code} value={state.code}>
+                            {state.name}
+                          </SelectItem>
+                        ))}
+                      </ScrollArea>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='zip_code'
+              render={({ field }) => (
+                <FormItem className='sm:col-span-2 lg:col-span-1'>
+                  <FormLabel>Zip Code</FormLabel>
+                  <FormControl>
+                    <Input placeholder='12345' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        )}
         <Button type='submit' disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting ? 'Creating employee...' : 'Create employee'}
         </Button>
