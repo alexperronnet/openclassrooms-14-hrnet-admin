@@ -15,3 +15,7 @@ export function formatDate(date: Date) {
 
   return formatter.format(d)
 }
+
+export function emptyStringToNull(value?: string) {
+  return value === '' ? null : value
+}

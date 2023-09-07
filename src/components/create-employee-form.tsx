@@ -20,7 +20,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/components/ui/use-toast'
 import { US_STATES } from '@/data/us-states'
-import { cn } from '@/libs/utils'
+import { cn, emptyStringToNull } from '@/libs/utils'
 
 const schema = z.object({
   first_name: z.string({ required_error: 'First Name is required' }).nonempty('First Name is required'),
@@ -77,7 +77,14 @@ export function CreateEmployeeForm() {
   const { toast } = useToast()
 
   async function onSubmit(values: z.infer<typeof schema>) {
-    const { error } = await supabase.from('employees').insert(values).select()
+    const transformedValues = {
+      ...values,
+      street_address: emptyStringToNull(values.street_address),
+      city: emptyStringToNull(values.city),
+      zip_code: emptyStringToNull(values.zip_code),
+    }
+
+    const { error } = await supabase.from('employees').insert(transformedValues).select()
 
     if (error) {
       toast({ variant: 'destructive', title: 'Error', description: error.message })

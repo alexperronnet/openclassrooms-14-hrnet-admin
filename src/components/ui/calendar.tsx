@@ -61,7 +61,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
                 handleChange(value)
               }}
             >
-              <SelectTrigger className='pr-1.5 focus:ring-0'>
+              <SelectTrigger className='pr-1.5'>
                 <SelectValue>{selected?.props?.children}</SelectValue>
               </SelectTrigger>
               <SelectContent position='popper'>
