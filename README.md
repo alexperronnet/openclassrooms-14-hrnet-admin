@@ -40,6 +40,11 @@ As this is the concluding project of my training program, I aimed to surpass the
 - [Original Repository](https://github.com/OpenClassrooms-Student-Center/P12_Front-end)
 - [Custom React Dialog](https://github.com/alexperronnet/oc-14-react-dialog)
 
+To access the application, you can use the following credentials:
+
+- Email: `hr@wealth-health.com`
+- Password: `Password123`
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
