@@ -14,15 +14,15 @@ export function EmployeesTableSearch<TData>({ table }: EmployeesTableSearchProps
   const isFiltered = table.getState().globalFilter !== ''
 
   return (
-    <div className='flex items-center gap-2'>
+    <div className='flex w-full items-center gap-4'>
       <Input
         placeholder='Search all columns...'
         value={table.getState().globalFilter}
         onChange={(e) => table.setGlobalFilter(e.target.value)}
-        className='h-8 w-36 md:w-64'
+        className='h-8 w-full md:w-64'
       />
       {isFiltered && (
-        <Button variant='ghost' size='sm' onClick={() => table.setGlobalFilter('')}>
+        <Button variant='ghost' size='sm' className='h-8' onClick={() => table.setGlobalFilter('')}>
           <span>Reset</span>
           <XIcon className='ml-2 h-4 w-4' />
         </Button>

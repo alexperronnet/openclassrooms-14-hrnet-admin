@@ -3,7 +3,7 @@
 > [!WARNING]\
 > This repository contains a project from my "JavaScript React Developer" training program with [OpenClassrooms](https://openclassrooms.com/fr/). After the program's conclusion on September 20th, 2023, the project will no longer be updated or maintained.
 
-![Preview](https://github.com/alexperronnet/oc-14-hrnet-admin/assets/59840413/286213bb-82b3-4d23-a823-7f09e298bc29)
+![Preview](./.github/preview.png)
 
 ## Table of Contents
 
