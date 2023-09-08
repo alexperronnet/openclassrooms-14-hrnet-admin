@@ -2,7 +2,7 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Row } from '@tanstack/react-table'
-import { Trash2Icon } from 'lucide-react'
+import { Loader2Icon, Trash2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
 
@@ -69,7 +69,10 @@ export function EmployeesTableRowDeletion({ row }: EmployeesTableRowDeletionProp
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <Button variant='destructive' disabled={loading} onClick={handleDelete}>
-            {loading ? 'Deleting...' : 'Delete'}
+            {loading && <Loader2Icon className='mr-2 h-4 w-4 animate-spin' />}
+            <span>
+              Delete {first_name} {last_name}
+            </span>
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
