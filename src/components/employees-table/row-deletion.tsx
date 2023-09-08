@@ -1,11 +1,5 @@
 'use client'
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import type { Row } from '@tanstack/react-table'
-import { Trash2Icon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import * as React from 'react'
-
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -15,7 +9,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+} from '@oc-wh/react-dialog'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import type { Row } from '@tanstack/react-table'
+import { Trash2Icon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import * as React from 'react'
+
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 
