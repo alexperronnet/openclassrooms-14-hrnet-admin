@@ -2,8 +2,8 @@ import { UsersIcon } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
-import { CreateEmployeeForm } from '@/components/create-employee-form'
 import { DashboardHeading } from '@/components/dashboard-heading'
+import { CreateEmployeeForm } from '@/components/forms/create-employee-form'
 import { buttonVariants } from '@/components/ui/button'
 
 export const metadata: Metadata = {

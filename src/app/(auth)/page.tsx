@@ -4,7 +4,7 @@ import { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { LoginForm } from '@/components/login-form'
+import { LoginForm } from '@/components/forms/login-form'
 import { siteConfig } from '@/configs/site'
 
 export const dynamic = 'force-dynamic'

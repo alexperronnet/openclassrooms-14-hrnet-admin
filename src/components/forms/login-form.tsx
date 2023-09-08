@@ -2,37 +2,28 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { Loader2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
-
-const schema = z.object({
-  email: z.string().nonempty('Email is required').email(),
-  password: z.string().nonempty('Password is required'),
-})
-
-type FormData = z.infer<typeof schema>
+import { type LoginSchema, loginSchema } from '@/libs/validations/login-schema'
 
 export function LoginForm() {
   const supabase = createClientComponentClient<Database>()
 
-  const form = useForm<FormData>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+  const form = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: '', password: '' },
   })
   const router = useRouter()
   const { toast } = useToast()
 
-  async function onSubmit(values: FormData) {
+  async function onSubmit(values: LoginSchema) {
     const { error } = await supabase.auth.signInWithPassword(values)
 
     if (error) {
@@ -70,7 +61,8 @@ export function LoginForm() {
           )}
         />
         <Button type='submit' disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting ? 'Signing in...' : 'Sign in'}
+          {form.formState.isSubmitting && <Loader2Icon className='mr-2 h-4 w-4 animate-spin' />}
+          <span>Continue</span>
         </Button>
       </form>
     </Form>
