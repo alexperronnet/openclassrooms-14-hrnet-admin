@@ -10,7 +10,7 @@ type PreferDesktopProps = {
 export function PreferDesktop({ children }: PreferDesktopProps) {
   return (
     <React.Fragment>
-      <Alert variant='destructive' className='md:hidden'>
+      <Alert variant='destructive' className='xl:hidden'>
         <LaptopIcon className='h-4 w-4' />
         <AlertTitle>Recommendation!</AlertTitle>
         <AlertDescription>

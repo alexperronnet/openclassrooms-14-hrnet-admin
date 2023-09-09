@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default async function EmployeePage() {
   const supabase = createServerComponentClient<Database>({ cookies })
 
-  const { data: employees } = await supabase.from('employees').select()
+  const { data: employees } = await supabase.from('employees').select('*').order('created_at', { ascending: false })
 
   return (
     <main className='flex flex-col gap-14'>
