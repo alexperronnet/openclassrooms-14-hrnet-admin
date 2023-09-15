@@ -10,12 +10,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@oc-wh/react-dialog'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Row } from '@tanstack/react-table'
+import { useAtom } from 'jotai'
 import { Trash2Icon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 import * as React from 'react'
 
+import { employeesAtom } from '@/atoms/employee-atom'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 
@@ -25,27 +25,20 @@ interface EmployeesTableRowDeletionProps {
 
 export function EmployeesTableRowDeletion({ row }: EmployeesTableRowDeletionProps) {
   const { id, first_name, last_name } = row.original
+  const [employees, setEmployees] = useAtom(employeesAtom)
 
-  const supabase = createClientComponentClient<Database>()
-  const [loading, setLoading] = React.useState(false)
   const [open, setOpen] = React.useState(false)
-  const router = useRouter()
   const { toast } = useToast()
 
-  async function handleDelete() {
-    setLoading(true)
-
-    const { error } = await supabase.from('employees').delete().eq('id', id)
-
-    if (error) {
+  function handleDelete() {
+    try {
+      const updatedEmployees = employees.filter((employee) => employee.id !== id)
+      setEmployees(updatedEmployees)
       setOpen(false)
-      setLoading(false)
-      toast({ variant: 'destructive', title: 'Error', description: error.message })
-    } else {
-      setOpen(false)
-      setLoading(false)
       toast({ title: 'Success', description: `Employee ${first_name} ${last_name} deleted.` })
-      router.refresh()
+    } catch (error: any) {
+      setOpen(false)
+      toast({ variant: 'destructive', title: 'Error', description: error.message })
     }
   }
 
@@ -68,8 +61,8 @@ export function EmployeesTableRowDeletion({ row }: EmployeesTableRowDeletionProp
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <Button variant='destructive' disabled={loading} onClick={handleDelete}>
-            {loading ? 'Deleting...' : 'Delete'}
+          <Button variant='destructive' onClick={handleDelete}>
+            Delete
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

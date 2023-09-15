@@ -11,26 +11,28 @@ import {
   useReactTable,
   VisibilityState,
 } from '@tanstack/react-table'
+import { useAtom } from 'jotai'
 import { CircleOffIcon } from 'lucide-react'
 import * as React from 'react'
 
+import { employeesAtom } from '@/atoms/employee-atom'
 import { EmployeesTablePagination } from '@/components/employees-table/pagination'
 import { EmployeesTableSearch } from '@/components/employees-table/search'
 import { EmployeesTableViewOptions } from '@/components/employees-table/view-options'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
-interface EmployeesTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+interface EmployeesTableProps {
+  columns: ColumnDef<Employee, any>[]
 }
 
-export function EmployeesTable<TData, TValue>({ columns, data }: EmployeesTableProps<TData, TValue>) {
+export function EmployeesTable({ columns }: EmployeesTableProps) {
+  const [employees] = useAtom(employeesAtom)
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [globalFilter, setGlobalFilter] = React.useState('')
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
 
   const table = useReactTable({
-    data,
+    data: employees,
     columns,
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,

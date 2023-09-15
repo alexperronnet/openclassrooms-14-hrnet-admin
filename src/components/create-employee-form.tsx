@@ -1,14 +1,14 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { format } from 'date-fns'
+import { useAtom } from 'jotai'
 import { CalendarIcon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { employeesAtom } from '@/atoms/employee-atom'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -60,23 +60,16 @@ const schema = z.object({
 })
 
 export function CreateEmployeeForm() {
-  const supabase = createClientComponentClient<Database>()
+  const [, setEmployees] = useAtom(employeesAtom)
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      first_name: '',
-      last_name: '',
-      street_address: '',
-      city: '',
-      zip_code: '',
-    },
+    defaultValues: { first_name: '', last_name: '', street_address: '', city: '', zip_code: '' },
   })
   const [showOptionalFields, setShowOptionalFields] = React.useState(false)
-  const router = useRouter()
   const { toast } = useToast()
 
-  async function onSubmit(values: z.infer<typeof schema>) {
+  function onSubmit(values: z.infer<typeof schema>) {
     const transformedValues = {
       ...values,
       street_address: emptyStringToNull(values.street_address),
@@ -84,14 +77,18 @@ export function CreateEmployeeForm() {
       zip_code: emptyStringToNull(values.zip_code),
     }
 
-    const { error } = await supabase.from('employees').insert(transformedValues).select()
+    const id = Math.random().toString(36).substring(7)
+    const created_at = new Date().toISOString()
 
-    if (error) {
-      toast({ variant: 'destructive', title: 'Error', description: error.message })
-    } else {
+    try {
+      setEmployees((prev: any) => {
+        const newEmployee = { id, created_at, ...transformedValues }
+        return [...prev, newEmployee]
+      })
       toast({ title: 'Success', description: `Employee ${values.first_name} ${values.last_name} created` })
       form.reset()
-      router.refresh()
+    } catch (error: any) {
+      toast({ variant: 'destructive', title: 'Error', description: error.message })
     }
   }
 
@@ -305,9 +302,7 @@ export function CreateEmployeeForm() {
             />
           </div>
         )}
-        <Button type='submit' disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting ? 'Creating employee...' : 'Create employee'}
-        </Button>
+        <Button type='submit'>Create employee</Button>
       </form>
     </Form>
   )

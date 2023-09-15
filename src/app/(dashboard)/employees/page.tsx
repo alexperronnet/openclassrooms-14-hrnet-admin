@@ -1,7 +1,5 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { UserPlusIcon } from 'lucide-react'
 import { Metadata } from 'next'
-import { cookies } from 'next/headers'
 import Link from 'next/link'
 
 import { DashboardHeading } from '@/components/dashboard-heading'
@@ -10,17 +8,11 @@ import { employeesTableColumns } from '@/components/employees-table/columns'
 import { PreferDesktop } from '@/components/prefer-desktop'
 import { buttonVariants } from '@/components/ui/button'
 
-export const dynamic = 'force-dynamic'
-
 export const metadata: Metadata = {
   title: 'Employees',
 }
 
-export default async function EmployeePage() {
-  const supabase = createServerComponentClient<Database>({ cookies })
-
-  const { data: employees } = await supabase.from('employees').select()
-
+export default function EmployeePage() {
   return (
     <main className='flex flex-col gap-14'>
       <PreferDesktop>
@@ -34,7 +26,7 @@ export default async function EmployeePage() {
             </Link>
           }
         />
-        <EmployeesTable columns={employeesTableColumns} data={employees ?? []} />
+        <EmployeesTable columns={employeesTableColumns} />
       </PreferDesktop>
     </main>
   )

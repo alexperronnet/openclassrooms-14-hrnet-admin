@@ -4,9 +4,9 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 
+import { Providers } from '@/components/providers'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/toaster'
 import { siteConfig } from '@/configs/site'
 import { fontSans } from '@/libs/fonts'
@@ -58,12 +58,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang='en' suppressHydrationWarning>
       <head />
       <body className={cn('flex flex-col', fontSans.variable)}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+        <Providers attribute='class' defaultTheme='system' enableSystem>
           <SiteHeader session={data.session} />
           <div className='container grow py-14'>{children}</div>
           <SiteFooter />
           <Toaster />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )
