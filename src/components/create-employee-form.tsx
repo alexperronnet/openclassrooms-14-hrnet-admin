@@ -1,6 +1,16 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@oc-wh/react-dialog'
 import { format } from 'date-fns'
 import { useAtom } from 'jotai'
 import { CalendarIcon } from 'lucide-react'
@@ -85,7 +95,6 @@ export function CreateEmployeeForm() {
         const newEmployee = { id, created_at, ...transformedValues }
         return [...prev, newEmployee]
       })
-      toast({ title: 'Success', description: `Employee ${values.first_name} ${values.last_name} created` })
       form.reset()
     } catch (error: any) {
       toast({ variant: 'destructive', title: 'Error', description: error.message })
@@ -302,7 +311,22 @@ export function CreateEmployeeForm() {
             />
           </div>
         )}
-        <Button type='submit'>Create employee</Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button type='submit'>Create employee</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>New employee created</AlertDialogTitle>
+              <AlertDialogDescription>
+                Congratulations! You have successfully created a new employee.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction>Close</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </form>
     </Form>
   )
