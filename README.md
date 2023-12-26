@@ -1,7 +1,7 @@
 # HRnet
 
-> [!WARNING]\
-> This repository contains a project from my "JavaScript React Developer" training program with [OpenClassrooms](https://openclassrooms.com/fr/). After the program's conclusion on September 20th, 2023, the project will no longer be updated or maintained.
+> [!CAUTION]
+> This repository contains a project completed as part of my training at [OpenClassrooms](https://openclassrooms.com). Having successfully concluded the program, the project is now archived and is no longer maintained. Please note that the repository remains available for reference purposes only; some links or features may not work as expected.
 
 ![Preview](./.github/assets/preview.png)
 
